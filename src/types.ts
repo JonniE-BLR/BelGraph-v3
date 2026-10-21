@@ -32,6 +32,10 @@ export interface Person {
   f: string[];
   /** наследие / память */
   legacy: string;
+  /** юридическое/общественно-значимое примечание с источником */
+  note?: string;
+  noteUrl?: string;
+  noteSource?: string;
   /** страницы Википедии lang:Title */
   w: string[];
 }

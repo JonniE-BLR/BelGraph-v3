@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { ChevronRight, ExternalLink, Landmark, MapPin, Network, Quote, ScrollText, Sparkles, X } from 'lucide-react';
+import { ChevronRight, ExternalLink, Landmark, MapPin, Network, Quote, ScrollText, Sparkles, X, Info } from 'lucide-react';
 import type { GraphEdge, GraphNode } from '@/types';
 import { CATS, YEAR_FROM, YEAR_TO } from '@/data/categories';
 import { initials, yearsStr } from '@/lib/utils';
@@ -74,6 +74,21 @@ export function PersonPanel({ node, edges, onClose, onJump }: Props) {
             <Section icon={<ScrollText className="w-3.5 h-3.5" />} title="Биография">
               <p className="text-[13px] leading-relaxed opacity-85">{n.bio}</p>
             </Section>
+
+            {/* примечание к правовому/общественному статусу */}
+            {n.note && (
+              <div className="mt-4 rounded-2xl border border-amber-300/25 bg-amber-400/8 p-3.5">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.16em] text-amber-200/90 mb-2">
+                  <Info className="w-3.5 h-3.5" /> Примечание
+                </div>
+                <p className="text-[12px] leading-relaxed opacity-90">{n.note}</p>
+                {n.noteUrl && (
+                  <a href={n.noteUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-amber-200 hover:underline">
+                    {n.noteSource || 'Источник'} <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            )}
 
             {/* факты */}
             <Section icon={<Sparkles className="w-3.5 h-3.5" />} title="Почему важная фигура">
